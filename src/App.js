@@ -16,7 +16,7 @@ function App() {
       setLocation("");
     }
   };
-  const convertToCelcius = () => {
+  const convertToCelcius = (data) => {
     let tempInCelcius = Math.floor(5(data.main.temp - 32) / 9);
     return tempInCelcius;
   };
@@ -38,7 +38,7 @@ function App() {
             <p>{data.name}</p>
           </div>
           <div className="temp">
-            {data.main ? <h1>{() => convertToCelcius()}°C</h1> : null}
+            {data.main ? <h1>{() => convertToCelcius(data)}°C</h1> : null}
           </div>
           <div className="description">
             {data.weather ? <p>{data.weather[0].main}</p> : null}
