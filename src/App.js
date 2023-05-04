@@ -19,14 +19,21 @@ function App() {
       setLocation("");
     }
   };
+  function changeBackground(image) {
+    document.body.style.background = image;
+  }
+
   const convertToCelcius = (data) => {
     let tempInCelcius = Math.floor((data.main.temp - 32) * 0.56);
     if (tempInCelcius < 10) {
-      document.body.style.background = hot;
+      changeBackground(cold);
+      console.log("cold");
     } else if (tempInCelcius > 35) {
-      document.body.style.background = cold;
+      changeBackground(hot);
+      console.log("hot");
     } else {
-      document.body.style.background = normal;
+      changeBackground(normal);
+      console.log("normal");
     }
     console.log(tempInCelcius);
     return tempInCelcius;
