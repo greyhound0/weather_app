@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import hot from "srcassetshot.png";
+import cold from "srcassetscold.jpg";
+import normal from "srcassetssunnset.jpg";
 
 function App() {
   const [data, setData] = useState({});
@@ -18,6 +21,13 @@ function App() {
   };
   const convertToCelcius = (data) => {
     let tempInCelcius = Math.floor((data.main.temp - 32) * 0.56);
+    if (tempInCelcius < 10) {
+      document.body.style.background = hot;
+    } else if (tempInCelcius > 35) {
+      document.body.style.background = cold;
+    } else {
+      document.body.style.background = normal;
+    }
     console.log(tempInCelcius);
     return tempInCelcius;
   };
