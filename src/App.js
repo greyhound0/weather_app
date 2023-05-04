@@ -18,6 +18,7 @@ function App() {
   };
   const convertToCelcius = (data) => {
     let tempInCelcius = Math.floor(5(data.main.temp - 32) / 9);
+    console.log(tempInCelcius);
     return tempInCelcius;
   };
 
