@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import hot from "srcassetshot.png";
-import cold from "srcassetscold.jpg";
-import normal from "srcassetssunnset.jpg";
+import hot from "./assets/hot.png";
+import cold from "./assets/cold.jpg";
+import normal from "./assets/sunnset.jpg";
 
 function App() {
   const [data, setData] = useState({});
