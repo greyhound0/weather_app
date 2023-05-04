@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import hot from "./assets/hot.png";
+import hot from "./assets/hot.jpg";
 import cold from "./assets/cold.jpg";
-import normal from "./assets/sunnset.jpg";
+import normal from "./assets/sunset.jpg";
 
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
+  const [bgImage, setBgImage] = useState(normal);
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`;
+
+  // const changeBackground = (color) => {
+  //   setBgImage(color);
+  // };
+
+  // useEffect(() => {
+  //   return () => {};
+  // }, []);
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
@@ -19,28 +28,46 @@ function App() {
       setLocation("");
     }
   };
-  function changeBackground(image) {
-    document.body.style.background = image;
-  }
+
+  let tempInCelcius = Math.floor((data?.main?.temp - 32) * 0.56);
+  const conditionBackground = () => {
+    if (tempInCelcius < 10) {
+      setBgImage(cold);
+      console.log("cold");
+    } else if (tempInCelcius > 20) {
+      setBgImage(hot);
+
+      console.log("hot");
+    } else {
+      setBgImage(normal);
+
+      console.log("normal");
+    }
+  };
+
+  useEffect(() => {
+    conditionBackground();
+
+    return () => {};
+  }, [tempInCelcius]);
 
   const convertToCelcius = (data) => {
     let tempInCelcius = Math.floor((data.main.temp - 32) * 0.56);
-    if (tempInCelcius < 10) {
-      changeBackground(cold);
-      console.log("cold");
-    } else if (tempInCelcius > 35) {
-      changeBackground(hot);
-      console.log("hot");
-    } else {
-      changeBackground(normal);
-      console.log("normal");
-    }
+
     console.log(tempInCelcius);
     return tempInCelcius;
   };
 
+  const bgStyle = {
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    height: "100vh",
+    width: "100%",
+  };
+  console.log("bbbb", bgImage);
   return (
-    <div className="app">
+    <div className="app" style={bgStyle}>
       <div className="search">
         <input
           value={location}
