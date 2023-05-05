@@ -34,7 +34,7 @@ function App() {
     if (tempInCelcius < 10) {
       setBgImage(cold);
       console.log("cold");
-    } else if (tempInCelcius > 20) {
+    } else if (tempInCelcius > 30) {
       setBgImage(hot);
 
       console.log("hot");
@@ -89,7 +89,7 @@ function App() {
             {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
         </div>
-
+        {/* 
         {data.name !== undefined && (
           <div className="bottom">
             <div className="feels">
@@ -109,7 +109,7 @@ function App() {
               <p>Wind Speed</p>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
